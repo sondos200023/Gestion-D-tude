@@ -1,0 +1,39 @@
+<div class="container">
+    <h2>Liste des étudiants</h2>
+
+    <!-- Champs de recherche -->
+    <div class="mb-3">
+        <label for="nomClasse" class="form-label">Nom de la classe</label>
+        <input type="text" id="nomClasse" [(ngModel)]="nomClasse" class="form-control">
+    </div>
+    
+    <div class="mb-3">
+        <label for="nomEnseignant" class="form-label">Nom de l'enseignant</label>
+        <input type="text" id="nomEnseignant" [(ngModel)]="nomEnseignant" class="form-control">
+    </div>
+    
+    <div class="mb-3">
+        <label for="prenomEnseignant" class="form-label">Prénom de l'enseignant</label>
+        <input type="text" id="prenomEnseignant" [(ngModel)]="prenomEnseignant" class="form-control">
+    </div>
+
+    <button (click)="fetchEtudiants()" class="btn btn-primary">Rechercher</button>
+
+    <table style="margin-bottom: 50px;" class="table table-responsive table-striped border-dark">
+        <thead class="table-dark">
+            <tr>
+                <th>Prenom</th>
+                <th>Nom de famille</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let etudiant of etudiants">
+                <td>{{ etudiant.prenom }}</td>
+                <td>{{ etudiant.nomDeFamille }}</td>
+            </tr>
+        </tbody>
+        <ng-template #noData>
+            <p>Aucun étudiant trouvé.</p>
+        </ng-template>
+    </table>
+</div>

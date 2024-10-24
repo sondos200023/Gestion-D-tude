@@ -24,11 +24,11 @@ export class EtudiantService {
   }*/
   getEtudiants(nomClasse: string, nomEnseignant: string, prenomEnseignant: string): Observable<any> {
     const headers = this.createAuthorizationHeader();
-    const params = {
-      nomClasse: nomClasse || null,  
-      nomEnseignant: nomEnseignant || null,
-      prenomEnseignant: prenomEnseignant || null
-    };
+    const params: any = {};
+    if (nomClasse) params.nomClasse = nomClasse;
+    if (nomEnseignant) params.nomEnseignant = nomEnseignant;
+    if (prenomEnseignant) params.prenomEnseignant = prenomEnseignant;
+    
   
     if (headers) {
       return this.http.get(`${BASE_URL}/Etudiant/etu2`, { headers, params });

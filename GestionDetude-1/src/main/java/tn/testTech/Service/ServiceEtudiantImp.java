@@ -38,7 +38,7 @@ public List<Etudiant> getEtudiantsByFilters(String nomClasse, String nomEnseigna
         return etudiantRepository.findEtudiantsByClasseNom(nomClasse);
     }
     else if (nomEnseignant != null && prenomEnseignant != null && nomClasse == null) {
-        return etudiantRepository.findEtudiantsByEnseignantNom(prenomEnseignant, nomEnseignant);
+        return etudiantRepository.findEtudiantsByEnseignantNom(nomEnseignant, prenomEnseignant);
     }else {
     return etudiantRepository.findAll();}
 

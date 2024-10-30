@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loginForm = this.fb.group({
+    this.loginForm = this.fb.group({ // Cette méthode crée un FormGroup, qui est un groupe de contrôles de formulaire(email et mdp).
       email: ['', Validators.required, Validators.email],
       password: ['', Validators.required],
     })

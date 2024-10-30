@@ -30,7 +30,7 @@ export class EtudiantService {
     if (prenomEnseignant) params.prenomEnseignant = prenomEnseignant;
     
   
-    if (headers) {
+    if (headers) { //if true
       return this.http.get(`${BASE_URL}/Etudiant/etu2`, { headers, params });
     } else {
       console.error("JWT token is missing in local storage.");

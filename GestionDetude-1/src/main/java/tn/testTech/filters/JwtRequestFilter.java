@@ -19,7 +19,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import tn.testTech.Service.jwt.UserServiceImpl;
 import tn.testTech.utils.JwtUtil;
-
+//un filtre est un composant(gerer comme un bean) extend OncePerRequestFilter s'execute 1 fois par requete 
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
@@ -31,7 +31,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         this.userService = userService;
         this.jwtUtil = jwtUtil;
     }
-
+//Filtre pour valider à chaque requete Http s'il y'a un token ou pas 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String authHeader = request.getHeader("Authorization");
@@ -39,7 +39,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         String username = null;
 
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
-            token = authHeader.substring(7);
+            token = authHeader.substring(7);//Bearer tokenJWT
             username = jwtUtil.extractUsername(token);
         }
 

@@ -1,6 +1,7 @@
 package tn.testTech.dto;
 
 public class LoginRequest {
+	//    @NotBlank(message = "L'email est obligatoire")
 	 private String email;
 
 	    private String password;

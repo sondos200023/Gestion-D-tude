@@ -16,7 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import tn.testTech.filters.JwtRequestFilter;
 
-
+//securité
 
 @Configuration
 @EnableWebSecurity
@@ -32,20 +32,20 @@ public class WebSecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity security) throws Exception {
-        return security .cors()  // Activer CORS
+        return security .cors()  //Active le CORS pour permettre les requêtes d’autres domaines
                 .and()
         		.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/signup", "/login").permitAll()
-               .anyRequest().authenticated()  // Toute autre requête doit être authentifiée
+                .requestMatchers("/signup", "/login").permitAll() // accées public au endpoints signup et login
+               .anyRequest().authenticated()  
                 .and()
                 // .authorizeHttpRequests().requestMatchers("/api/**")
                 //.authenticated()
                // .and()
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS) //chaque requete est authentifier independament avec tokens JWT
                 .and()
-                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)//Ajoute le jwtRequestFilter avant le filtre de gestion d’authentification UsernamePasswordAuthenticationFilter. Ce filtre traite le jeton JWT de chaque requête pour valider l’identité de l’utilisateur.
                 .build();
     }
 

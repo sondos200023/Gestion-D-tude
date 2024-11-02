@@ -17,9 +17,9 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
+//CORS Cross Origin Request Filter utilisé pour garantir que le backend accepte des requete de frontend
 @Component
-@Order(Ordered.HIGHEST_PRECEDENCE)
+@Order(Ordered.HIGHEST_PRECEDENCE) //Filter de High priorité le premier qui s'exécute 
 public class SimpleCorsFilter implements Filter {
 
     @Value("${app.client.url}")
@@ -34,6 +34,7 @@ public class SimpleCorsFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         Map<String, String> map = new HashMap<>();
         String originHeader = request.getHeader("origin");
+        //ajout des entete CORS au réponse http
         response.setHeader("Access-Control-Allow-Origin", originHeader);
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
         response.setHeader("Access-Control-Max-Age", "3600");

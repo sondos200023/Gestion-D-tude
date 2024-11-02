@@ -1,5 +1,6 @@
 package tn.testTech.dto;
-
+//package pour transférer les données entre la couche service et le controleur 
+//DTO Data Transfert Object contient juste des attribus ,getters et setters et constructeurs pour utilisé les données nécessaire seulement
 public class signupRequest {
 	private String email;
 

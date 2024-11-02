@@ -27,18 +27,16 @@ public class AuthServiceImpl  implements AuthService {
 
     @Override
     public User createUser(signupRequest signupRequest) {
-        //Check if user already exist
         if (userRepository.existsByEmail(signupRequest.getEmail())) {
-            return null;
+            return null; //car si un email existant un erreur se fait 
         }
 
         User user = new User();
-        BeanUtils.copyProperties(signupRequest,user);
+        BeanUtils.copyProperties(signupRequest,user);//opié tous les proprieté de dto signupRequest dans l'objet user 
 
-        //Hash the password before saving
-        String hashPassword = passwordEncoder.encode(signupRequest.getPassword());
+        String hashPassword = passwordEncoder.encode(signupRequest.getPassword()); //chiffrement
         user.setPassword(hashPassword);
-        User createdUser = userRepository.save(user);
+        User createdUser = userRepository.save(user); //sauvegard dans la base de données 
         user.setId(createdUser.getId());
         return user;
     }

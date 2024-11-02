@@ -15,7 +15,7 @@ import tn.testTech.model.*;
 @RestController
 @RequestMapping("/signup")
 public class SignUpController {
-	 private final AuthService authService;
+	 private final AuthService authService;//ne peut pas étre changé
 
 	    public SignUpController(AuthService authService) {
 	        this.authService = authService;

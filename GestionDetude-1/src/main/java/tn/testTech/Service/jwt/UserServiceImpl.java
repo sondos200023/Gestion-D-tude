@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.security.core.userdetails.User;
 import tn.testTech.repository.UserRepository;
-
+//userdetailsService pour chargé les données de l'utilisateurs de la base 
 @Service
 public class UserServiceImpl implements UserDetailsService {
 
@@ -22,10 +22,10 @@ public class UserServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        // Write logic to fetch user from DB
         tn.testTech.model.User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("Utilisateur non existant: " + email));
 
-        return new User(user.getEmail(), user.getPassword(), Collections.emptyList());
+        return new User(user.getEmail(), user.getPassword(), Collections.emptyList());//conversion de l'objet user en un objet UserDetails
+        //Collections.emptyList() represente les autorisations et les roles des utilisateurs
     }
 }
